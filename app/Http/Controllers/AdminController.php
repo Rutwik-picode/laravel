@@ -47,8 +47,11 @@ class AdminController extends Controller
 
         return view('adminDeshbord');
     }
-    public function delete()
+    public function delete($id)
     {
+        DB::table('new_users')->where('id', $id)->delete();
+
+        return view('adminDeshbord');
     }
 
     /**
@@ -69,7 +72,9 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user_data = DB::table('new_users')->where('id', $id)->first();
+
+        return view('edituser', compact("user_data"));
     }
 
     /**
@@ -79,9 +84,17 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $id = $request->id;
+        DB::table('new_users')->where('id', $id)->update([
+            'userName' => $request->userName,
+            'email' => $request->email,
+            'password' => $request->pass,
+            'cpassword' => $request->cpass
+        ]);
+
+        return view('Admindeshbord');
     }
 
     /**

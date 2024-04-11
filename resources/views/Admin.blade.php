@@ -32,8 +32,8 @@
                     <td>{{$d->username}}</td>
                     <td>{{$d->email}}</td>
                     <td>{{$d->cpassword}}</td>
-                    <td><button class="btn btn-primary">edit</button></td>
-                    <td><a class="btn btn-danger" href="/delete-user?id={{$id->id}}">Delete</a></td>
+                    <td><a class="btn btn-primary" href={{url('/edit-user/'.$d->id)}}>edit</a></td>
+                    <td><a class="btn btn-danger" href={{url('/delete-user/'.$d->id)}}>Delete</a></td>
                 </tr>
                 @endforeach
             </tbody>
